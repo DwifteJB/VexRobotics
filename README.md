@@ -12,8 +12,5 @@ Run the writetoiqcpp.js (using nodejs (node ./src/build/writetoiqcpp.js)) then o
 ## TODO
 
 - [X] Allow motor to move with right thumbstick
-- [x] Clamp the motor using code
-- [x] Vision system for detecting object (maybe automatic system for grasping?)
-### haha
-
-![picture of my hot face](https://cdn.discordapp.com/attachments/950795743373971516/959555227743289404/IMG_7370.jpg)
+- [ ] Clamp the motor using code
+- [ ] Vision system for detecting object (maybe automatic system for grasping?)
