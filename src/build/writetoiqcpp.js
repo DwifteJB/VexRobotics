@@ -5,7 +5,8 @@ const code = fs.readFileSync(buildDir + "./code.c++")
 const toWriteTo = fs.readFileSync(buildDir + "DSHSMistake.iqcpp");
 // replaced any newlines to \n
 function nl2slashn(str){
-    return str.toString().replace(/(?:\r\n|\r|\n)/g, '\\n');
+    return str.toString().replace(/\n/g, "");
+    //return str.toString().replace(/(?:\r\n|\r|\n)/g, '\\n');
 }
 (async () => {
     console.log("Parsing JSON");
