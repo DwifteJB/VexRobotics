@@ -122,7 +122,7 @@ void basicScreen(bool remove){
   Brain.Screen.print("Battery: %d%%", Brain.Battery.capacity());
 }
 
-//program
+// ROBOT STARTS HERE
 
 void init() {
   // Startup script
@@ -131,13 +131,9 @@ void init() {
 void checkClaw() {
   basicScreen(false);
   Brain.Screen.setCursor(3,1);
-  Brain.Screen.print("Spinning: %d", (char)claw.isSpinning());
+  Brain.Screen.print("Spinning: %d", (bool)claw.isSpinning());
   Brain.Screen.setCursor(4,1);
   Brain.Screen.print("Claw Velocity: %d", (char)claw.velocity(percent));
-}
-void checkMove() {
-  basicScreen(false);
-
 }
 void checkVisual() {
   basicScreen(false);
@@ -175,6 +171,7 @@ int main() {
   Controller.AxisD.changed(clawMovement);
   // checking stuff
   Brain.buttonUp.pressed(checkClaw);
-  Brain.buttonDown.pressed(checkMove);
-  Brain.buttonCheck.pressed(checkVisual);
+  Brain.buttonDown.pressed(checkVisual);
 }
+
+// ROBOT ENDS HERE
