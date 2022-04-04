@@ -1,8 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 const buildDir = path.dirname(__filename) + "/../robot/"
-const code = fs.readFileSync(buildDir + "./code.cpp")
-const toWriteTo = fs.readFileSync(buildDir + "DSHSMistake.iqcpp");
+const code = fs.readFileSync(buildDir + "./code.c++")
+const toWriteTo = fs.readFileSync(buildDir + "Baller.iqcpp");
 // replaced any newlines to \n
 function nl2slashn(str){
     return str.toString().replace(/\n/g, "");
@@ -13,6 +13,6 @@ function nl2slashn(str){
     const parsedJson = JSON.parse(toWriteTo);
     // write to the "textContent" section
     parsedJson["textContent"] = nl2slashn(code);
-    console.log(`Saving: \n${code}\n\nto DSHSMistake.iqcpp`)
-    fs.writeFileSync(buildDir + "DSHSMistake.iqcpp", JSON.stringify(parsedJson))
+    console.log(`Saving: \n${code}\n\nto Baller.iqcpp`)
+    fs.writeFileSync(buildDir + "Baller.iqcpp", JSON.stringify(parsedJson))
 })();

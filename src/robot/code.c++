@@ -91,10 +91,10 @@ task rc_auto_loop_task_Controller(rc_auto_loop_function_Controller);
 
 //----------------------------------------------------------------------------
 //                                                                            
-//    Module:       main.cpp                                                  
+//    Module:       code.cpp                                                  
 //    Author:       Owen Exon and Robbie Elliott                                                  
 //    Created:      22/03/2022                                                    
-//    Description:  JoshBot V1                                               
+//    Description:  Baller bot                                             
 //                                                                            
 //----------------------------------------------------------------------------
 
@@ -119,7 +119,7 @@ void basicScreen(bool remove){
     Brain.Screen.clearScreen();
   }
   Brain.Screen.setCursor(1,1);
-  Brain.Screen.print("OWEN BOT: v1.0");
+  Brain.Screen.print("Baller: v1.0");
   Brain.Screen.newLine();
   Brain.Screen.setCursor(2,1);
   Brain.Screen.print("Battery: %d%%", Brain.Battery.capacity());
@@ -139,8 +139,19 @@ void checkClaw() {
   Brain.Screen.print("Claw Velocity: %d", (char)claw.velocity(percent));
 }
 void autoGrab() {
-  
+  if (dist.distance(mm) < 20 && bypass_autoclamp == false) {
+    // I found the object within 20mm of the claw. What should I do?
+    // I should grab it
+    claw.spinToPosition(0, deg);
 
+  }
+}
+void autoClampToggle() {
+  if(bypass_autoclamp == true) {
+    bypass_autoclamp = false;
+  } else {
+    bypass_autoclamp = true; // This is so simple, thank you previous nodejs knowledge!
+  }
 }
 void checkVisual() {
   basicScreen(false);
@@ -176,10 +187,15 @@ int main() {
   init();
   // Allows claw movement on the D Axis
   Controller.AxisD.changed(clawMovement);
+  // If the distance is changed, start autoGrab()
+  dist.changed(autoGrab);
+  // Buttons
   // Debugging Menu
   Brain.buttonUp.pressed(checkClaw);
   Brain.buttonDown.pressed(checkVisual);
-  dist.changed(autoClaw);
-}
+  // Turning off/on Autoclamp
 
+    Controller.ButtonEUp.pressed(autoClampToggle);
+
+}
 // ROBOT ENDS HERE
