@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const buildDir = path.dirname(__filename) + "/../robot/"
-const code = fs.readFileSync(buildDir + "./code.c++")
+const code = fs.readFileSync(buildDir + "./code.cpp")
 const toWriteTo = fs.readFileSync(buildDir + "DSHSMistake.iqcpp");
 // replaced any newlines to \n
 function nl2slashn(str){
