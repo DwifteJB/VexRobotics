@@ -52,7 +52,6 @@ bool RemoteControlCodeEnabled = true;
 
 // Global Variables
 bool bypass_autoclamp = false;
-bool STOPMOVINGPLEASE = false;
 // Allows for easier use of the VEX Library
 using namespace vex;
 // Functions
@@ -87,7 +86,6 @@ void checkClaw() {
   Brain.Screen.setCursor(4,1);
   Brain.Screen.print("Claw Pos: %d", (char)claw.position(degrees));
 }
-
 void checkVisual() {
   basicScreen(false);
   Brain.Screen.setCursor(3,1);
@@ -99,7 +97,11 @@ void autoGrab() {
   if (dist.distance(mm) < 110 && bypass_autoclamp == false) {
     checkVisual();
     // I found the object within 110mm of the claw. What should I do?
-    // What should I add next? :)
+    // I should go and shut the claw.
+    claw.spin(reverse);
+    claw.setVelocity(20,percent);
+    wait(2,seconds);
+    claw.stop();
   }
 }
 void autoClampToggle() {
@@ -141,6 +143,5 @@ int main() {
   // Turning off/on Autoclamp
   Controller.ButtonEUp.pressed(autoClampToggle);
   checkClaw();
-
 }
 // ROBOT ENDS HERE
