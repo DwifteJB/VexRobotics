@@ -15,3 +15,4 @@ Run the writetoiqcpp.js (using nodejs (node ./src/build/writetoiqcpp.js)) then o
 - [ ] Clamp the motor using code or maybe in hardware
 - [X] Vision system for detecting object (maybe automatic system for grasping?)
 - [ ] Potential way to fire the object grasped.
+- [ ] Page system for on-board display
